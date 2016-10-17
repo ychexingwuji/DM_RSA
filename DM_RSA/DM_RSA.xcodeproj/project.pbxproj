@@ -13,6 +13,10 @@
 		BC6DB6061DB4C17900DFAB0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6041DB4C17900DFAB0E /* Main.storyboard */; };
 		BC6DB6081DB4C17900DFAB0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6071DB4C17900DFAB0E /* Assets.xcassets */; };
 		BC6DB60B1DB4C17900DFAB0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6091DB4C17900DFAB0E /* LaunchScreen.storyboard */; };
+		BC6DB6141DB4C21400DFAB0E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6DB6131DB4C21400DFAB0E /* Security.framework */; };
+		BC6DB6181DB4C3B300DFAB0E /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6161DB4C3B300DFAB0E /* public_key.der */; };
+		BC6DB6191DB4C3B300DFAB0E /* private_key.p12 in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6171DB4C3B300DFAB0E /* private_key.p12 */; };
+		BC6DB61F1DB4C48B00DFAB0E /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6DB61E1DB4C48B00DFAB0E /* RSAEncryptor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,12 @@
 		BC6DB6071DB4C17900DFAB0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC6DB60A1DB4C17900DFAB0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC6DB60C1DB4C17900DFAB0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC6DB6131DB4C21400DFAB0E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BC6DB6161DB4C3B300DFAB0E /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = public_key.der; sourceTree = "<group>"; };
+		BC6DB6171DB4C3B300DFAB0E /* private_key.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_key.p12; sourceTree = "<group>"; };
+		BC6DB61D1DB4C48B00DFAB0E /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
+		BC6DB61E1DB4C48B00DFAB0E /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
+		BC6DB6201DB4C93100DFAB0E /* DM_RSA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DM_RSA.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC6DB6141DB4C21400DFAB0E /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +55,7 @@
 			children = (
 				BC6DB5FA1DB4C17900DFAB0E /* DM_RSA */,
 				BC6DB5F91DB4C17900DFAB0E /* Products */,
+				BC6DB6121DB4C21400DFAB0E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +70,9 @@
 		BC6DB5FA1DB4C17900DFAB0E /* DM_RSA */ = {
 			isa = PBXGroup;
 			children = (
+				BC6DB6201DB4C93100DFAB0E /* DM_RSA.entitlements */,
+				BC6DB61D1DB4C48B00DFAB0E /* RSAEncryptor.h */,
+				BC6DB61E1DB4C48B00DFAB0E /* RSAEncryptor.m */,
 				BC6DB5FE1DB4C17900DFAB0E /* AppDelegate.h */,
 				BC6DB5FF1DB4C17900DFAB0E /* AppDelegate.m */,
 				BC6DB6011DB4C17900DFAB0E /* ViewController.h */,
@@ -74,9 +89,28 @@
 		BC6DB5FB1DB4C17900DFAB0E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC6DB6151DB4C35C00DFAB0E /* Resource */,
 				BC6DB5FC1DB4C17900DFAB0E /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC6DB6121DB4C21400DFAB0E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC6DB6131DB4C21400DFAB0E /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC6DB6151DB4C35C00DFAB0E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BC6DB6161DB4C3B300DFAB0E /* public_key.der */,
+				BC6DB6171DB4C3B300DFAB0E /* private_key.p12 */,
+			);
+			name = Resource;
+			path = "../iOS-RSA-TEST";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,7 +144,13 @@
 				TargetAttributes = {
 					BC6DB5F71DB4C17900DFAB0E = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = XH8687Z8TS;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -139,6 +179,8 @@
 			files = (
 				BC6DB60B1DB4C17900DFAB0E /* LaunchScreen.storyboard in Resources */,
 				BC6DB6081DB4C17900DFAB0E /* Assets.xcassets in Resources */,
+				BC6DB6181DB4C3B300DFAB0E /* public_key.der in Resources */,
+				BC6DB6191DB4C3B300DFAB0E /* private_key.p12 in Resources */,
 				BC6DB6061DB4C17900DFAB0E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC6DB6031DB4C17900DFAB0E /* ViewController.m in Sources */,
+				BC6DB61F1DB4C48B00DFAB0E /* RSAEncryptor.m in Sources */,
 				BC6DB6001DB4C17900DFAB0E /* AppDelegate.m in Sources */,
 				BC6DB5FD1DB4C17900DFAB0E /* main.m in Sources */,
 			);
@@ -270,6 +313,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DM_RSA/DM_RSA.entitlements;
+				DEVELOPMENT_TEAM = XH8687Z8TS;
 				INFOPLIST_FILE = DM_RSA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "brook.DM-RSA";
@@ -281,6 +326,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DM_RSA/DM_RSA.entitlements;
+				DEVELOPMENT_TEAM = XH8687Z8TS;
 				INFOPLIST_FILE = DM_RSA/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "brook.DM-RSA";
