@@ -108,7 +108,7 @@ static NSData *base64_decode(NSString *str){
         return nil;
     }
     data = [self decryptData:data withKeyRef:privKeyRef];
-    NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *ret = [data base64EncodedStringWithOptions:0];
     return ret;
 }
 
@@ -395,7 +395,8 @@ static NSData *base64_decode(NSString *str){
     return [d_key subdataWithRange:NSMakeRange(idx, c_len)];
 }
 
-+ (NSData *)decryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef{
++ (NSData *)decryptData:(NSData *)data withKeyRef:(SecKeyRef)keyRef
+{
     const uint8_t *srcbuf = (const uint8_t *)[data bytes];
     size_t srclen = (size_t)data.length;
     
@@ -449,5 +450,45 @@ static NSData *base64_decode(NSString *str){
 }
 
 /* END: Decryption with RSA private key */
+
+
++ (NSString *)getPrivatekeyFromP12Fiel:(NSString *)filePath password:(NSString *)password
+{
+    SecKeyRef keyRef = [self getPrivateKeyRefWithContentsOfFile:filePath password:password];
+    
+    NSData *keyData = [self getPublicKeyBitsFromKey:keyRef];
+    NSString *base64String = [keyData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    return base64String;
+}
+
++ (NSData *)getPublicKeyBitsFromKey:(SecKeyRef)givenKey {
+    
+    static const uint8_t publicKeyIdentifier[] ="merchant.com.wyang.applepaydemo3";
+    NSData *publicTag = [[NSData alloc] initWithBytes:publicKeyIdentifier length:sizeof(publicKeyIdentifier)];
+    
+    OSStatus sanityCheck = noErr;
+    NSData * publicKeyBits = nil;
+    
+    NSMutableDictionary * queryPublicKey = [[NSMutableDictionary alloc] init];
+    [queryPublicKey setObject:(__bridge id)kSecClassKey forKey:(__bridge id)kSecClass];
+    [queryPublicKey setObject:publicTag forKey:(__bridge id)kSecAttrApplicationTag];
+    [queryPublicKey setObject:(__bridge id)kSecAttrKeyTypeRSA forKey:(__bridge id)kSecAttrKeyType];
+    
+    // Temporarily add key to the Keychain, return as data:
+    NSMutableDictionary * attributes = [queryPublicKey mutableCopy];
+    [attributes setObject:(__bridge id)givenKey forKey:(__bridge id)kSecValueRef];
+    [attributes setObject:@YES forKey:(__bridge id)kSecReturnData];
+    CFTypeRef result;
+    sanityCheck = SecItemAdd((__bridge CFDictionaryRef) attributes, &result);
+    if (sanityCheck == errSecSuccess) {
+        publicKeyBits = CFBridgingRelease(result);
+        
+        // Remove from Keychain again:
+        (void)SecItemDelete((__bridge CFDictionaryRef) queryPublicKey);
+    }
+    
+    return publicKeyBits;
+}
 
 @end

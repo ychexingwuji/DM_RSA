@@ -6,6 +6,8 @@
 //  Copyright © 2016年 brook. All rights reserved.
 //
 
+// https://developer.apple.com/library/content/documentation/PassKit/Reference/PaymentTokenJSON/PaymentTokenJSON.html#//apple_ref/doc/uid/TP40014929
+
 #import "ViewController.h"
 #import "RSAEncryptor.h"
 
@@ -18,9 +20,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self testFileEncrypt];
+//    [self testFileEncrypt];
     
-    [self testStringEncrypt];
+//    [self testStringEncrypt];
+    
+    [self testDecryptAP];
+}
+
+- (void)testDecryptAP
+{
+    NSString *private_key_path = [[NSBundle mainBundle] pathForResource:@"private" ofType:@"p12"];
+
+    NSString *rsaPrivatekey = [RSAEncryptor getPrivatekeyFromP12Fiel:private_key_path password:@"123456"];
+    
+//    NSLog(@"%@", rsaPrivatekey);
+    
+//    NSString *originalString = @"这是一段将要使用'.der'文件加密的字符串!";
+//    NSString *public_key_path = [[NSBundle mainBundle] pathForResource:@"apple_pay" ofType:@"cer"];
+//    NSString *encryptStr = [RSAEncryptor encryptString:originalString publicKeyWithContentsOfFile:public_key_path];
+    
+    NSString *encryptStr = @"l6w4oBmvLF/f/6Gj7idhO5aIFlwZ5qZrqSLxR+mLqsjJqHLf2OUTObn+UOO/Iaupc+nc6Kuz1ZTQbBMG2w6/KC8F07lZTPnCOcHVxxBP03UQn6gNkNV8DLNNqJ9GoBDzbGy/dWgKBBPNEdgA59jKY+8H/XQzvNuZqiFDM4LTr+O3/FdqGy6PxfFHRwRNV15WoKtsfQ91xPf++MI4GoTZSdxpc63ewm/8l5Q81AqnZMH03PMRyu8POT92tl10tg8GRmQFCXMgBm7GM+6nz0tebOoLndspqHbe9xtAGmxzseuFCi4A2q8WaqzPgnQ917bvuUnxNHAkXoPTVIUCsXzxXA==";
+    
+//    NSLog(@"加密后:%@", encryptStr);
+    NSLog(@"解密后:%@", [RSAEncryptor decryptString:encryptStr privateKeyWithContentsOfFile:private_key_path password:@"123456"]);
 }
 
 - (void)testFileEncrypt
