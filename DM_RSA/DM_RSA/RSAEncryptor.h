@@ -43,7 +43,10 @@
  */
 + (NSString *)decryptString:(NSString *)str privateKey:(NSString *)privKey;
 
-/** 从p12文件中获取 私钥字符串 */
+/** 从 p12 文件中获取 私钥字符串 */
 + (NSString *)getPrivatekeyFromP12Fiel:(NSString *)filePath password:(NSString *)password;
+
+/** 从 cer 中提取 公钥字符串 */
++ (NSString *)getPublickeyFromCerFiel:(NSString *)filePath;
 
 @end

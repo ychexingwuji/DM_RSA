@@ -462,6 +462,16 @@ static NSData *base64_decode(NSString *str){
     return base64String;
 }
 
++ (NSString *)getPublickeyFromCerFiel:(NSString *)filePath
+{
+    SecKeyRef keyRef = [self getPublicKeyRefWithContentsOfFile:filePath];
+    
+    NSData *keyData = [self getPublicKeyBitsFromKey:keyRef];
+    NSString *base64String = [keyData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    return base64String;
+}
+
 + (NSData *)getPublicKeyBitsFromKey:(SecKeyRef)givenKey {
     
     static const uint8_t publicKeyIdentifier[] ="merchant.com.wyang.applepaydemo3";

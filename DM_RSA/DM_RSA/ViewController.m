@@ -30,10 +30,14 @@
 - (void)testDecryptAP
 {
     NSString *private_key_path = [[NSBundle mainBundle] pathForResource:@"private" ofType:@"p12"];
-
     NSString *rsaPrivatekey = [RSAEncryptor getPrivatekeyFromP12Fiel:private_key_path password:@"123456"];
     
-//    NSLog(@"%@", rsaPrivatekey);
+    NSLog(@"私钥 = %@", rsaPrivatekey);
+    
+    NSString *public_key_path = [[NSBundle mainBundle] pathForResource:@"apple_pay" ofType:@"cer"];
+    NSString *rsaPublickey = [RSAEncryptor getPublickeyFromCerFiel:public_key_path];
+    
+    NSLog(@"公钥 = %@", rsaPublickey);
     
 //    NSString *originalString = @"这是一段将要使用'.der'文件加密的字符串!";
 //    NSString *public_key_path = [[NSBundle mainBundle] pathForResource:@"apple_pay" ofType:@"cer"];
