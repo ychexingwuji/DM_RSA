@@ -107,8 +107,8 @@ static NSData *base64_decode(NSString *str){
     if (!privKeyRef) {
         return nil;
     }
-    data = [self decryptData:data withKeyRef:privKeyRef];
-    NSString *ret = [data base64EncodedStringWithOptions:0];
+    NSData *resultdata = [self decryptData:data withKeyRef:privKeyRef];
+    NSString *ret = [resultdata base64EncodedStringWithOptions:0];
     return ret;
 }
 
@@ -236,7 +236,7 @@ static NSData *base64_decode(NSString *str){
     
     size_t block_size = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
     void *outbuf = malloc(block_size);
-    size_t src_block_size = block_size - 11;
+    size_t src_block_size = block_size - 12;
     
     NSMutableData *ret = [[NSMutableData alloc] init];
     for(int idx=0; idx<srclen; idx+=src_block_size){
@@ -400,12 +400,15 @@ static NSData *base64_decode(NSString *str){
     const uint8_t *srcbuf = (const uint8_t *)[data bytes];
     size_t srclen = (size_t)data.length;
     
-    size_t block_size = SecKeyGetBlockSize(keyRef) * sizeof(uint8_t);
+    size_t blockBytes = SecKeyGetBlockSize(keyRef);  // 返回字节数
+    
+    size_t block_size = blockBytes * sizeof(uint8_t);
     UInt8 *outbuf = malloc(block_size);
     size_t src_block_size = block_size;
     
     NSMutableData *ret = [[NSMutableData alloc] init];
-    for(int idx=0; idx<srclen; idx+=src_block_size){
+    for (int idx = 0; idx < srclen; idx += src_block_size)
+    {
         //NSLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
         size_t data_len = srclen - idx;
         if(data_len > src_block_size){
@@ -414,12 +417,12 @@ static NSData *base64_decode(NSString *str){
         
         size_t outlen = block_size;
         OSStatus status = noErr;
-        status = SecKeyDecrypt(keyRef,
+        status = SecKeyDecrypt(keyRef, // key
                                kSecPaddingNone,
-                               srcbuf + idx,
-                               data_len,
-                               outbuf,
-                               &outlen
+                               srcbuf + idx, // 密文
+                               data_len,  // 密文长度
+                               outbuf,  // 明文
+                               &outlen  // 明文长度
                                );
         if (status != 0) {
             NSLog(@"SecKeyEncrypt fail. Error Code: %d", status);

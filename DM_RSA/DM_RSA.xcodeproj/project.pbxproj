@@ -14,11 +14,15 @@
 		BC6DB6081DB4C17900DFAB0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6071DB4C17900DFAB0E /* Assets.xcassets */; };
 		BC6DB60B1DB4C17900DFAB0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6091DB4C17900DFAB0E /* LaunchScreen.storyboard */; };
 		BC6DB6141DB4C21400DFAB0E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6DB6131DB4C21400DFAB0E /* Security.framework */; };
-		BC6DB6181DB4C3B300DFAB0E /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6161DB4C3B300DFAB0E /* public_key.der */; };
-		BC6DB6191DB4C3B300DFAB0E /* private_key.p12 in Resources */ = {isa = PBXBuildFile; fileRef = BC6DB6171DB4C3B300DFAB0E /* private_key.p12 */; };
 		BC6DB61F1DB4C48B00DFAB0E /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6DB61E1DB4C48B00DFAB0E /* RSAEncryptor.m */; };
 		BC7E74DE1DCA2028003F99ED /* private.p12 in Resources */ = {isa = PBXBuildFile; fileRef = BC7E74DD1DCA2028003F99ED /* private.p12 */; };
 		BC7E74E01DCA2383003F99ED /* apple_pay.cer in Resources */ = {isa = PBXBuildFile; fileRef = BC7E74DF1DCA2383003F99ED /* apple_pay.cer */; };
+		F3707B4B1DCC5E9400E0858D /* private_key.p12 in Resources */ = {isa = PBXBuildFile; fileRef = F3707B461DCC5E9400E0858D /* private_key.p12 */; };
+		F3707B4C1DCC5E9400E0858D /* public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = F3707B471DCC5E9400E0858D /* public_key.der */; };
+		F3707B4D1DCC5E9400E0858D /* rsaCert.crt in Resources */ = {isa = PBXBuildFile; fileRef = F3707B481DCC5E9400E0858D /* rsaCert.crt */; };
+		F3707B4E1DCC5E9400E0858D /* rsaCerReq.csr in Resources */ = {isa = PBXBuildFile; fileRef = F3707B491DCC5E9400E0858D /* rsaCerReq.csr */; };
+		F3707B4F1DCC5E9400E0858D /* private_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = F3707B4A1DCC5E9400E0858D /* private_key.pem */; };
+		F3707B521DCC5FEB00E0858D /* RSAEncryptor2.m in Sources */ = {isa = PBXBuildFile; fileRef = F3707B511DCC5FEB00E0858D /* RSAEncryptor2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,13 +37,18 @@
 		BC6DB60A1DB4C17900DFAB0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC6DB60C1DB4C17900DFAB0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6DB6131DB4C21400DFAB0E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		BC6DB6161DB4C3B300DFAB0E /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = public_key.der; sourceTree = "<group>"; };
-		BC6DB6171DB4C3B300DFAB0E /* private_key.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_key.p12; sourceTree = "<group>"; };
 		BC6DB61D1DB4C48B00DFAB0E /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		BC6DB61E1DB4C48B00DFAB0E /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		BC6DB6201DB4C93100DFAB0E /* DM_RSA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DM_RSA.entitlements; sourceTree = "<group>"; };
 		BC7E74DD1DCA2028003F99ED /* private.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = private.p12; sourceTree = "<group>"; };
 		BC7E74DF1DCA2383003F99ED /* apple_pay.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = apple_pay.cer; sourceTree = "<group>"; };
+		F3707B461DCC5E9400E0858D /* private_key.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = private_key.p12; sourceTree = "<group>"; };
+		F3707B471DCC5E9400E0858D /* public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = public_key.der; sourceTree = "<group>"; };
+		F3707B481DCC5E9400E0858D /* rsaCert.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rsaCert.crt; sourceTree = "<group>"; };
+		F3707B491DCC5E9400E0858D /* rsaCerReq.csr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rsaCerReq.csr; sourceTree = "<group>"; };
+		F3707B4A1DCC5E9400E0858D /* private_key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = private_key.pem; sourceTree = "<group>"; };
+		F3707B501DCC5FEB00E0858D /* RSAEncryptor2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor2.h; sourceTree = "<group>"; };
+		F3707B511DCC5FEB00E0858D /* RSAEncryptor2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +86,8 @@
 				BC6DB6201DB4C93100DFAB0E /* DM_RSA.entitlements */,
 				BC6DB61D1DB4C48B00DFAB0E /* RSAEncryptor.h */,
 				BC6DB61E1DB4C48B00DFAB0E /* RSAEncryptor.m */,
+				F3707B501DCC5FEB00E0858D /* RSAEncryptor2.h */,
+				F3707B511DCC5FEB00E0858D /* RSAEncryptor2.m */,
 				BC6DB5FE1DB4C17900DFAB0E /* AppDelegate.h */,
 				BC6DB5FF1DB4C17900DFAB0E /* AppDelegate.m */,
 				BC6DB6011DB4C17900DFAB0E /* ViewController.h */,
@@ -110,9 +121,8 @@
 		BC6DB6151DB4C35C00DFAB0E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				F3707B451DCC5E6A00E0858D /* openssl */,
 				BC7E74E11DCA2426003F99ED /* KeyChain */,
-				BC6DB6161DB4C3B300DFAB0E /* public_key.der */,
-				BC6DB6171DB4C3B300DFAB0E /* private_key.p12 */,
 			);
 			name = Resource;
 			path = "../iOS-RSA-TEST";
@@ -125,6 +135,18 @@
 				BC7E74DD1DCA2028003F99ED /* private.p12 */,
 			);
 			name = KeyChain;
+			sourceTree = "<group>";
+		};
+		F3707B451DCC5E6A00E0858D /* openssl */ = {
+			isa = PBXGroup;
+			children = (
+				F3707B461DCC5E9400E0858D /* private_key.p12 */,
+				F3707B471DCC5E9400E0858D /* public_key.der */,
+				F3707B481DCC5E9400E0858D /* rsaCert.crt */,
+				F3707B491DCC5E9400E0858D /* rsaCerReq.csr */,
+				F3707B4A1DCC5E9400E0858D /* private_key.pem */,
+			);
+			path = openssl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,11 +214,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC6DB60B1DB4C17900DFAB0E /* LaunchScreen.storyboard in Resources */,
+				F3707B4E1DCC5E9400E0858D /* rsaCerReq.csr in Resources */,
+				F3707B4F1DCC5E9400E0858D /* private_key.pem in Resources */,
 				BC7E74DE1DCA2028003F99ED /* private.p12 in Resources */,
 				BC6DB6081DB4C17900DFAB0E /* Assets.xcassets in Resources */,
-				BC6DB6181DB4C3B300DFAB0E /* public_key.der in Resources */,
+				F3707B4B1DCC5E9400E0858D /* private_key.p12 in Resources */,
+				F3707B4D1DCC5E9400E0858D /* rsaCert.crt in Resources */,
+				F3707B4C1DCC5E9400E0858D /* public_key.der in Resources */,
 				BC7E74E01DCA2383003F99ED /* apple_pay.cer in Resources */,
-				BC6DB6191DB4C3B300DFAB0E /* private_key.p12 in Resources */,
 				BC6DB6061DB4C17900DFAB0E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC6DB6031DB4C17900DFAB0E /* ViewController.m in Sources */,
+				F3707B521DCC5FEB00E0858D /* RSAEncryptor2.m in Sources */,
 				BC6DB61F1DB4C48B00DFAB0E /* RSAEncryptor.m in Sources */,
 				BC6DB6001DB4C17900DFAB0E /* AppDelegate.m in Sources */,
 				BC6DB5FD1DB4C17900DFAB0E /* main.m in Sources */,
