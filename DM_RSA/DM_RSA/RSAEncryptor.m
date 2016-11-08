@@ -504,4 +504,61 @@ static NSData *base64_decode(NSString *str){
     return publicKeyBits;
 }
 
++ (NSString *)decryptWrappedKey:(NSString *)str
+   privateKeyWithContentsOfFile:(NSString *)path
+                       password:(NSString *)password
+{
+    SecKeyRef keyRef = [self getPrivateKeyRefWithContentsOfFile:path password:password];
+    NSData *origionData = [[NSData alloc] initWithBase64EncodedString:str options:0];
+    
+    //CFDataRef decodeDataRef = (__bridge CFDataRef)([[NSData alloc] initWithBase64EncodedString:str options:0]);
+    CFErrorRef errorRef = nil;
+    
+    size_t blockBytes = SecKeyGetBlockSize(keyRef);
+    size_t src_block_size = blockBytes;
+    NSMutableData *resultData = [[NSMutableData alloc] init];
+    
+    for (int idx = 0; idx < origionData.length; idx += src_block_size)
+    {
+        NSData *targetData = [[origionData subdataWithRange:NSMakeRange(idx, src_block_size)] copy];
+        CFDataRef targetDataRef = (__bridge CFDataRef)(targetData);
+        CFDataRef dataRef = SecKeyCreateDecryptedData(keyRef, kSecKeyAlgorithmRSAEncryptionOAEPSHA256, targetDataRef, &errorRef);
+        
+        if (dataRef != nil) {
+            NSData *partData = (__bridge NSData *)(dataRef);
+            [resultData appendData:partData];
+            NSLog(@"add %i", idx);
+        }
+        
+        if (errorRef != nil) {
+            NSLog(@"error = %@", errorRef);
+        }
+        
+        NSUInteger leftSize = origionData.length - idx - src_block_size;
+        
+        if ((leftSize < src_block_size) && leftSize > 0) {
+            // 剩余部分也要解密
+            NSData *targetData2 = [[origionData subdataWithRange:NSMakeRange(idx + src_block_size, leftSize)] copy];
+            CFDataRef targetDataRef2 = (__bridge CFDataRef)(targetData2);
+            CFDataRef dataRef2 = SecKeyCreateDecryptedData(keyRef, kSecKeyAlgorithmRSAEncryptionOAEPSHA256, targetDataRef2, &errorRef);
+            
+            if (dataRef2 != nil) {
+                NSData *partData2 = (__bridge NSData *)(dataRef2);
+                [resultData appendData:partData2];
+                NSLog(@"add %i", idx);
+            }
+            
+            break;
+        }
+    }
+    
+    if (resultData.length == 0) {
+        return nil;
+    }
+    else {
+        //2.把二进制数据转换为字符串返回
+        return [resultData base64EncodedStringWithOptions:0];
+    }
+}
+
 @end

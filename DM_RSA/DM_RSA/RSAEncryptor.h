@@ -49,4 +49,8 @@
 /** 从 cer 中提取 公钥字符串 */
 + (NSString *)getPublickeyFromCerFiel:(NSString *)filePath;
 
++ (NSString *)decryptWrappedKey:(NSString *)str
+   privateKeyWithContentsOfFile:(NSString *)path
+                       password:(NSString *)password;
+
 @end
